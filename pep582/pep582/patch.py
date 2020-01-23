@@ -37,7 +37,7 @@ def update_site_py():
                 with open(site.__file__, 'r') as f:
                     site_content = f.read()
                 with open(site.__file__+'_', 'w') as f:
-                    f.write(site_content.replace(CODE.format(False, '').replace(CODE.format(True, '')))
+                    f.write(site_content.replace(CODE.format(False, '').replace(CODE.format(True, ''))))
                 os.rename(site.__file__+'_', site.__file__)
                 print('{} succesfully patched'.format(site.__file__))
                 print('pep582 removed')
