@@ -1,5 +1,4 @@
 #a!/usr/bin/env python
-# -*- coding: utf-8 -*-
 """Tests for `pep582` package."""
 
 
@@ -21,13 +20,10 @@ class TestPep582(unittest.TestCase):
 
     def test_pip_install(self):
         """Test pip install."""
-        os.system('pip install requests')
-        self.assertEqual(os.system('test -e __pypackages__/*/lib/requests/'), 0)  # assuming we are on unix, sorry
-
+        os.system('pip install pythonloc')
+        self.assertEqual(os.system('test -e __pypackages__/*/lib/pythonloc/'), 0)  # assuming we are on unix, sorry
 
     def test_import_module(self):
         """Test import module."""
-        import requests
-        self.assertTrue(requests.__file__.startswith('__pypackages__'))
-
-
+        import pythonloc
+        self.assertTrue(pythonloc.__file__.startswith('__pypackages__'))
