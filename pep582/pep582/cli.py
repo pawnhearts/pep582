@@ -27,7 +27,8 @@ def freeze():
     import pip, os, itertools
     from pip.__main__ import _main
     from pep582.site import pypackages_path
-    sys.path = [pypackages_path, os.path.dirname(pip.__file__)] + list(itertools.takewhile(bool, sys.path))
+    sys.path = [pypackages_path, os.path.dirname(pip.__file__)] + [p for p in sys.path if '-packages' not in p]
+    print(sys.path)
     _main()
 
 main.add_command(install)

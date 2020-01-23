@@ -1,19 +1,6 @@
 ======
 pep582
-======
-
-
-.. image:: https://img.shields.io/pypi/v/pep582.svg
-        :target: https://pypi.python.org/pypi/pep582
-
-.. image:: https://img.shields.io/travis/pawnhearts/pep582.svg
-        :target: https://travis-ci.org/pawnhearts/pep582
-
-.. image:: https://readthedocs.org/projects/pep582/badge/?version=latest
-        :target: https://pep582.readthedocs.io/en/latest/?badge=latest
-        :alt: Documentation Status
-
-
+=====
 
 
 implements pep582(adds __pypackages__ to PYTHONPATH) via patching site.py
@@ -34,8 +21,6 @@ modules would me imported from there first
 
 
 * Free software: MIT license
-* Documentation: https://pep582.readthedocs.io.
-
 
 Features
 --------
