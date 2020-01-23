@@ -59,23 +59,3 @@ def update_site_py(install=True, bin=False):
         os.execvp(sys.executable, ['sudo'] + sys.argv)
 
 
-
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--uninstall', action='store_false',
-                        default=True,
-                        dest='install',
-                        help='uninstall. remove itself from site.py')
-
-    parser.add_argument('--bin', action='store_bin',
-                        default=False,
-                        dest='bin',
-                        help='add __pypackages__/bin to PATH')
-
-    args = parser.parse_args()
-    update_site_py(args.install, args.bin)
-    update_bash_rc(args.install, args.bin)
-
-
-if __name__ == '__main__':
-    main()

@@ -12,7 +12,7 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = []
+requirements = ['click']
 
 setup_requirements = []
 
@@ -53,7 +53,7 @@ setup(
     description="implements pep582(adds __pypackages__ to PYTHONPATH) via patching site.py",
     entry_points={
         'console_scripts': [
-            'pep582=pep582.patch:main',
+            'pep582=pep582.cli:main',
         ],
     },
     install_requires=requirements,
