@@ -10,16 +10,16 @@ def main():
 
 @click.command()
 @click.option('--bin', default=False, help='create __pypackages__/bin and add to PATH')
-def install(bin):
-    patch.update_site_py(True, bin)
+@click.option('--exists', default=False, help='use __pypackes__ dir only if it\'s already created manually')
+def install(bin, exists):
+    patch.update_site_py(True, bin, exists)
     patch.update_bash_rc(True, bin)
 
 
 @click.command()
-@click.option('--bin', default=False, help='create __pypackages__/bin and add to PATH')
 def uninstall(bin):
-    patch.update_site_py(False, bin)
-    patch.update_bash_rc(False, bin)
+    patch.update_site_py(False, False)
+    patch.update_bash_rc(False, False)
 
 
 @click.command()

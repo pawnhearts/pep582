@@ -2,7 +2,7 @@ import site, os, sys, argparse
 
 CODE = """try:
     from pep582.site import load_pypackages
-    load_pypackages()
+    load_pypackages({})
 except ImportError:
     pass # uninstalled maybe
 """
@@ -32,13 +32,15 @@ def update_bash_rc(install=True, bin=False):
                     f.write(content.replace(BASH_BIN.strip(), ''))
 
 
-def update_site_py(install=True, bin=False):
+def update_site_py(install=True, bin=False, if_exists=False):
     try:
         if install:
             if not hasattr(site, 'pep582'):
                 with open(site.__file__, 'a') as f:
-                    f.write(CODE)
+                    f.write(CODE.format(if_exists))
                 print('{} succesfully patched'.format(site.__file__))
+                if if_exists:
+                    print('if __pypackages__ directory exists')
                 print('pip install would install into __pypackages__ by default')
                 print('good luck!')
             else:
@@ -48,7 +50,7 @@ def update_site_py(install=True, bin=False):
                 with open(site.__file__, 'r') as f:
                     site_content = f.read()
                 with open(site.__file__+'_', 'w') as f:
-                    f.write(site_content.replace(CODE, ''))
+                    f.write(site_content.replace(CODE.format(True), '').replace(CODE.format(False), ''))
                 os.rename(site.__file__+'_', site.__file__)
                 print('{} succesfully patched'.format(site.__file__))
                 print('pep582 removed')

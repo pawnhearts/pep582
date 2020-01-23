@@ -4,9 +4,9 @@ import os, sys
 pypackages_path = os.path.join(os.path.abspath(getattr(sys.modules['__main__'], '__file__', '.')), '__pypackages__')
 
 
-def load_pypackagesa():
+def load_pypackagesa(if_exists=False):
 
-    if os.path.exists(pypackages_path):
+    if os.path.exists(pypackages_path) or not if_exists:
         lib = os.path.join(pypackages_path, '{}.{}/lib'.format(sys.version_info.major, sys.version_info.minor))
         if not os.path.exists(lib):
             os.makedirs(lib)
