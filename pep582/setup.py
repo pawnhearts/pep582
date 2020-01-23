@@ -31,7 +31,7 @@ setup(
     description="implements pep582(adds __pypackages__ to PYTHONPATH) via patching site.py",
     entry_points={
         'console_scripts': [
-            'pep582=pep582.patch',
+            'pep582=pep582.patch:main',
         ],
     },
     install_requires=requirements,
