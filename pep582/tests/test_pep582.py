@@ -1,10 +1,10 @@
 #a!/usr/bin/env python
 """Tests for `pep582` package."""
-
-
+import importlib
 import unittest
 import tempfile
 import os
+from subprocess import check_call
 
 
 class TestPep582(unittest.TestCase):
@@ -21,11 +21,10 @@ class TestPep582(unittest.TestCase):
 
     def test_pip_install(self):
         """Test pip install."""
-        os.system('pip install pythonloc')
-        self.assertEqual(os.system('test -e __pypackages__/*/lib/pythonloc/'), 0)  # assuming we are on unix, sorry
+        check_call('pip install tinydb')
+        self.assertEqual(os.system('test -e __pypackages__/*/lib/tinydb/'), 0)  # assuming we are on unix, sorry
 
     def test_import_module(self):
         """Test import module."""
-        os.system('pip install pythonloc')
-        import pythonloc
-        self.assertTrue(pythonloc.__file__.startswith('__pypackages__'))
+        check_call('pip install tinydb')
+        self.assertTrue(importlib.import_module('tinydb').__file__.startswith('__pypackages__'))

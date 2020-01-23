@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 """The setup script."""
+from subprocess import check_call
 
 from setuptools import setup, find_packages
+from setuptools.command import develop, install
 
 with open('README.rst') as readme_file:
     readme = readme_file.read()
@@ -49,5 +51,18 @@ setup(
     zip_safe=False,
 )
 
-# let's try
-from pep582 import patch
+
+class PostDevelopCommand(develop):
+    """Post-installation for development mode."""
+    def run(self):
+        develop.run(self)
+        from pep582.patch import update_site_py
+        update_site_py()
+
+
+class PostInstallCommand(install):
+    """Post-installation for installation mode."""
+    def run(self):
+        install.run(self)
+        from pep582.patch import update_site_py
+        update_site_py()
