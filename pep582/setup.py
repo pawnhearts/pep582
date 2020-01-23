@@ -3,7 +3,8 @@
 from subprocess import check_call
 
 from setuptools import setup, find_packages
-from setuptools.command import develop, install
+from setuptools.command.develop import develop
+from setuptools.command.install import install
 
 with open('README.rst') as readme_file:
     readme = readme_file.read()
@@ -19,7 +20,7 @@ test_requirements = []
 
 
 
-class PostDevelopCommand(develop.develop):
+class PostDevelopCommand(develop):
     """Post-installation for development mode."""
     def run(self):
         develop.run(self)
@@ -27,7 +28,7 @@ class PostDevelopCommand(develop.develop):
         update_site_py()
 
 
-class PostInstallCommand(install.install):
+class PostInstallCommand(install):
     """Post-installation for installation mode."""
     def run(self):
         install.run(self)
