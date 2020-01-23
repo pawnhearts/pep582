@@ -21,13 +21,13 @@ class TestPep582(unittest.TestCase):
 
     def test_pip_install(self):
         """Test pip install."""
-        os.system('pip install pytest')
-        self.assertEqual(os.system('test -e __pypackages__/*/lib/pytest/'), 0)  # assuming we are on unix, sorry
+        os.system('pip install requests')
+        self.assertEqual(os.system('test -e __pypackages__/*/lib/requests/'), 0)  # assuming we are on unix, sorry
 
 
     def test_import_module(self):
         """Test import module."""
-        import pytest
-        self.assertTrue(pytest.__file__.startswith('__pypackages__'))
+        import requests
+        self.assertTrue(requests.__file__.startswith('__pypackages__'))
 
 
