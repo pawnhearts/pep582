@@ -7,25 +7,13 @@ except ImportError:
     pass # uninstalled maybe
 """
 
-def update_site_py():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--uninstall', action='store_false',
-                        default=True,
-                        dest='install',
-                        help='uninstall. remove itself from site.py')
-
-    parser.add_argument('--bin', action='store_bin',
-                        default=False,
-                        dest='bin',
-                        help='add __pypackages__/bin to PATH')
-
-    args = parser.parse_args()
+def update_site_py(install=True, bin=False):
 
     try:
-        if args.install:
+        if install:
             if not hasattr(site, 'pep582'):
                 with open(site.__file__, 'a') as f:
-                    f.write(CODE.format(args.bin))
+                    f.write(CODE.format(bin))
                 print('{} succesfully patched'.format(site.__file__))
                 print('try creating __pypackages__ in some directory')
                 print('pip install inside that directory would install into __pypackages__ by default')
@@ -48,3 +36,21 @@ def update_site_py():
         os.execvp(sys.executable, ['sudo'] + sys.argv)
 
 
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--uninstall', action='store_false',
+                        default=True,
+                        dest='install',
+                        help='uninstall. remove itself from site.py')
+
+    parser.add_argument('--bin', action='store_bin',
+                        default=False,
+                        dest='bin',
+                        help='add __pypackages__/bin to PATH')
+
+    args = parser.parse_args()
+    update_site_py(args.install, args.bin)
+
+
+if __name__ == '__main__':
+    main()
