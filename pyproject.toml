@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pep582"
-version = "0.1.0"
+version = "0.1.1"
 description = "implements pep582(adds __pypackages__ to PYTHONPATH) via patching site.py",
 authors = ["ph <robotnaoborot@gmail.com>"]
 license = "MIT"
