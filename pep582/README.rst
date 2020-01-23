@@ -26,11 +26,7 @@ pythonloc requires using pythonloc instad of python command. and patched interpe
 
 my module allows to use your regular python binary.
 
-to patch site.py run python -m pep582.patch
-
-if you create __pypackages__ directorry inside your projects:
-
-"pip install" would install there by default
+"pip install" would install to __pypackages__ by default
 
 to install elsewhere use -t/--target
 
