@@ -52,7 +52,7 @@ setup(
 )
 
 
-class PostDevelopCommand(develop):
+class PostDevelopCommand(develop.develop):
     """Post-installation for development mode."""
     def run(self):
         develop.run(self)
@@ -60,7 +60,7 @@ class PostDevelopCommand(develop):
         update_site_py()
 
 
-class PostInstallCommand(install):
+class PostInstallCommand(install.install):
     """Post-installation for installation mode."""
     def run(self):
         install.run(self)
