@@ -1,7 +1,7 @@
 import site, os, sys, argparse
 
-CODE = """""try:
-    from pep582.site import load_pypackages, load_bin
+CODE = """try:
+    from pep582.site import load_pypackages
     load_pypackages()
 except ImportError:
     pass # uninstalled maybe

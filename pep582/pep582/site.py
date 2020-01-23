@@ -1,7 +1,7 @@
 import os, sys
 
 
-def load_pypackagesa(bin=False):
+def load_pypackagesa():
     path = os.path.join(os.path.abspath(sys.modules['__main__'].__file__), '__pypackages__')
 
     if os.path.exists(path):
@@ -12,5 +12,3 @@ def load_pypackagesa(bin=False):
         if 'pip' in sys.argv or sys.argv[0].endswith('pip'):
             if 'install' in sys.argv and ('-t' not in sys.argv and '--target' not in sys.argv):
                 sys.argv.extend(['-t', lib])
-        if bin:
-            pass
