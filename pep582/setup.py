@@ -51,11 +51,10 @@ setup(
         'Programming Language :: Python :: 3.8',
     ],
     description="implements pep582(adds __pypackages__ to PYTHONPATH) via patching site.py",
-    entry_points={
-        'console_scripts': [
-            'pep582=pep582.cli:main',
-        ],
-    },
+    entry_points='''
+        [console_scripts]
+        pep582=pep582.cli:main
+    ''',
     install_requires=requirements,
     license="MIT license",
     long_description=readme + '\n\n' + history,
@@ -67,7 +66,7 @@ setup(
     test_suite='tests',
     tests_require=test_requirements,
     url='https://github.com/pawnhearts/pep582',
-    version='0.1.2',
+    version='0.1.5',
     zip_safe=False,
     cmdclass={
         'develop': PostDevelopCommand,

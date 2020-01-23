@@ -24,11 +24,15 @@ def uninstall(bin):
 
 @click.command()
 def freeze():
-    sys.path = [sys.path[0]]
-    print(sys.path)
+    import pip, os, itertools
     from pip.__main__ import _main
+    from pep582.site import pypackages_path
+    sys.path = [pypackages_path, os.path.dirname(pip.__file__)] + list(itertools.takewhile(bool, sys.path))
     _main()
 
+main.add_command(install)
+main.add_command(uninstall)
+main.add_command(freeze)
 
 if __name__ == '__main__':
     main()

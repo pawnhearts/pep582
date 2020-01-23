@@ -27,4 +27,4 @@ class TestPep582(unittest.TestCase):
     def test_import_module(self):
         """Test import module."""
         check_call('pip install tinydb')
-        self.assertTrue(importlib.import_module('tinydb').__file__.startswith('__pypackages__'))
+        self.assertTrue(getattr(importlib.import_module('tinydb'), '__file__', '.').startswith('__pypackages__'))
