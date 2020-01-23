@@ -13,6 +13,7 @@ class TestPep582(unittest.TestCase):
     def setUp(self):
         """Set up test fixtures, if any."""
         os.chdir(tempfile.mkdtemp())
+        print(os.getcwd())
         os.mkdir('__pypackages__')
 
     def tearDown(self):
@@ -25,5 +26,6 @@ class TestPep582(unittest.TestCase):
 
     def test_import_module(self):
         """Test import module."""
+        os.system('pip install pythonloc')
         import pythonloc
         self.assertTrue(pythonloc.__file__.startswith('__pypackages__'))
