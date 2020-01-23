@@ -17,6 +17,25 @@ setup_requirements = []
 
 test_requirements = []
 
+
+
+class PostDevelopCommand(develop.develop):
+    """Post-installation for development mode."""
+    def run(self):
+        develop.run(self)
+        from pep582.patch import update_site_py
+        update_site_py()
+
+
+class PostInstallCommand(install.install):
+    """Post-installation for installation mode."""
+    def run(self):
+        install.run(self)
+        from pep582.patch import update_site_py
+        update_site_py()
+
+
+
 setup(
     author="robotnaoborot",
     author_email='robotnaoborot@gmail.com',
@@ -49,20 +68,8 @@ setup(
     url='https://github.com/pawnhearts/pep582',
     version='0.1.2',
     zip_safe=False,
+    cmdclass={
+        'develop': PostDevelopCommand,
+        'install': PostInstallCommand,
+    },
 )
-
-
-class PostDevelopCommand(develop.develop):
-    """Post-installation for development mode."""
-    def run(self):
-        develop.run(self)
-        from pep582.patch import update_site_py
-        update_site_py()
-
-
-class PostInstallCommand(install.install):
-    """Post-installation for installation mode."""
-    def run(self):
-        install.run(self)
-        from pep582.patch import update_site_py
-        update_site_py()
