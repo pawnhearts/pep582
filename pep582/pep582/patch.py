@@ -1,10 +1,17 @@
-import site, os, sys
+import site, os, sys, argparse
+
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-u', action='store_false',
+                        default=True,
+                        dest='install',
+                        help='remove itself from site.py')
+
     if not hasattr(site, 'pep582'):
         try:
             with open(site.__file__, 'a') as f:
-                f.write("from pep582 import site")
+                f.write("from pep582 import site as pep582")
             print('{} succesfully patched'.format(site.__file__))
             print('try creating __pypackages__ in some directory')
             print('pip install inside that directory would install into __pypackages__ by default')
